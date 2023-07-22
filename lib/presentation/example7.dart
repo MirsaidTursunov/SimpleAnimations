@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+
+class ExampleSeven extends StatefulWidget {
+  const ExampleSeven({Key? key}) : super(key: key);
+
+  @override
+  State<ExampleSeven> createState() => _ExampleSevenState();
+}
+
+class _ExampleSevenState extends State<ExampleSeven> {
+  bool _first = true;
+  double _fontSize = 60;
+  Color _color = Colors.blue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("AnimatedDefaultTextStyle"),
+      ),
+      body: Center(
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(seconds: 2),
+          curve: Curves.bounceInOut,
+          style: TextStyle(
+            fontSize: _fontSize,
+            color: _color,
+            fontWeight: FontWeight.bold,
+          ),
+          child: const Text(
+            "We learn Flutter",
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _fontSize = _first ? 70 : 25;
+            _color = _first ? Colors.blue : Colors.red;
+            _first = !_first;
+          });
+        },
+        child: const Text("Press!"),
+      ),
+    );
+  }
+}
